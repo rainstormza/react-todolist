@@ -39,7 +39,11 @@ class App extends Component {
   }
 
   deleteTodo(id) {
-    console.log(id);
+    // console.log(id);
+    let todos = this.state.todos.filter(todo => todo.id !== id);
+    this.setState({todos: todos});
+    // console.log(this.state.todos);
+
   }
 
   test(test) {
@@ -66,7 +70,10 @@ class App extends Component {
 
         <TodoInput addtodo={this.addTodo.bind(this)} />
         <br/>
-        <TodoList todos={this.state.todos} />
+        <TodoList
+          todos={this.state.todos}
+          deletetodo={this.deleteTodo.bind(this)}
+        />
 
       </div>
     );

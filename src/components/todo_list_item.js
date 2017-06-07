@@ -1,13 +1,14 @@
 import React from 'react';
 
-const TodoListItem = (props) => {
+// const TodoListItem = (props) => {
+const TodoListItem = ({todo, deleteTodo}) => {
   // console.log(props);
 
   return (
-    <li className="list-group-item">
-      {props.todo.id}
+    <li className="list-group-item" style={{cursor: 'pointer'}} onClick={() => deleteTodo(todo.id)}>
+      {todo.id}
       -
-      {props.todo.title}
+      {todo.title}
     </li>
   )
 }

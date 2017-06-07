@@ -8,6 +8,7 @@ const TodoList = (props) => {
   const todoListItems = props.todos.map(todo => {
     return (
       <TodoListItem
+        deleteTodo={props.deletetodo}
         key={todo.id}
         todo={todo} />
     )
