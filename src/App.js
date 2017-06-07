@@ -13,9 +13,9 @@ class App extends Component {
 
     this.state = {
       todos: [
-        {id: 1, title: '111', description: '111', date: new Date().toLocaleTimeString()},
-        {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString()},
-        {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString()},
+        {id: 1, title: '111', description: '111', date: new Date().toLocaleTimeString(), status: false},
+        {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString(), status: false},
+        {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString(), status: false},
       ],
     };
     console.log(this.state);
@@ -30,7 +30,8 @@ class App extends Component {
       id: Math.floor((Math.random() * 100) + 1), //1-100
       title: val,
       description: val + '555',
-      date: new Date().toLocaleTimeString()
+      date: new Date().toLocaleTimeString(),
+      status: false
     }
     // Update data
     this.state.todos.push(todo);
