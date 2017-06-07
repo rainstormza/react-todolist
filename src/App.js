@@ -38,6 +38,10 @@ class App extends Component {
     this.setState({todos: this.state.todos});
   }
 
+  deleteTodo(id) {
+    console.log(id);
+  }
+
   test(test) {
     console.log('test',test);
     console.log(this.state);
