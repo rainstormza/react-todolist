@@ -4,11 +4,11 @@ const TodoListItem = (props) => {
   // console.log(props);
 
   return (
-    <p>
+    <li className="list-group-item">
       {props.todo.id}
       -
       {props.todo.title}
-    </p>
+    </li>
   )
 }
 

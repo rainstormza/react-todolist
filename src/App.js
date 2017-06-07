@@ -58,10 +58,10 @@ class App extends Component {
           To do list - Web Application
         </p>
 
-        <button onClick={e => this.test(e)}>Test</button>
+        {/* <button onClick={e => this.test(e)}>Test</button> */}
 
         <TodoInput addtodo={this.addTodo.bind(this)} />
-
+        <br/>
         <TodoList todos={this.state.todos} />
 
       </div>

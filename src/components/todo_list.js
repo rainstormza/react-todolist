@@ -14,8 +14,10 @@ const TodoList = (props) => {
   });
   // console.log(todoListItems);
   return (
-    <div className="">
-      {todoListItems}
+    <div className="col-md-6 col-md-offset-3">
+      <ul className="list-group">
+        {todoListItems}
+      </ul>
     </div>
   );
 }
