@@ -47,6 +47,14 @@ class App extends Component {
 
   }
 
+  updateTodo(id) {
+
+  }
+
+  checkTodo(id) {
+    console.log(id);
+  }
+
   test(test) {
     console.log('test',test);
     console.log(this.state);
@@ -74,6 +82,8 @@ class App extends Component {
         <TodoList
           todos={this.state.todos}
           deletetodo={this.deleteTodo.bind(this)}
+          checktodo={this.checkTodo.bind(this)}
+
         />
 
       </div>
