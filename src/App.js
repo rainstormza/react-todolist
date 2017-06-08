@@ -4,7 +4,7 @@ import './App.css';
 
 import TodoInput from './components/todo_input';
 import TodoList from './components/todo_list';
-
+import TodoDetail from './components/todo_detail';
 
 class App extends Component {
 
@@ -17,6 +17,7 @@ class App extends Component {
         {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString(), status: false},
         {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString(), status: false},
       ],
+      selectTodo: false
     };
     console.log(this.state);
     // this.state.todos.push({id:4});
@@ -47,8 +48,23 @@ class App extends Component {
 
   }
 
-  updateTodo(id) {
+  updateTodo(id, val) {
+    const newValue = {
+      id: id,
+      title: val,
+      description: val + '555',
+      date: new Date().toLocaleTimeString(),
+      status: false
+    }
 
+    let todos = this.state.todos;
+    for(let todo in todos) {
+      if(todos[todo].id === id) {
+          todos[todo] = newValue
+        break;
+      }
+    }
+    this.setState({todos: todos});
   }
 
   checkTodo(id) {
@@ -85,15 +101,23 @@ class App extends Component {
         </p>
 
         {/* <button onClick={e => this.test(e)}>Test</button> */}
+        <div className="col-md-12">
+          <TodoInput addtodo={this.addTodo.bind(this)} />
+          <br/>
+          <TodoList
+            todos={this.state.todos}
+            deletetodo={this.deleteTodo.bind(this)}
+            checktodo={this.checkTodo.bind(this)}
+            updatetodo={this.updateTodo.bind(this)}
 
-        <TodoInput addtodo={this.addTodo.bind(this)} />
-        <br/>
-        <TodoList
-          todos={this.state.todos}
-          deletetodo={this.deleteTodo.bind(this)}
-          checktodo={this.checkTodo.bind(this)}
+          />
+        </div>
+        <div className="col-md-12">
+          <TodoDetail />
 
-        />
+        </div>
+
+
 
       </div>
     );

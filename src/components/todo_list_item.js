@@ -1,7 +1,7 @@
 import React from 'react';
 
 // const TodoListItem = (props) => {
-const TodoListItem = ({todo, deleteTodo, checkTodo}) => {
+const TodoListItem = ({todo, deleteTodo, checkTodo, updateTodo}) => {
   // console.log(todo);
 
   // const selected = this.todo.status ? '<list-group-item-success>' : '<list-group-item>';
@@ -16,7 +16,9 @@ const TodoListItem = ({todo, deleteTodo, checkTodo}) => {
       -
       {todo.title}
       <span className="pull-right">
-        <button type="button" className="btn btn-xs btn-success img-circle" onClick={() => checkTodo(todo.id)}>&#x2713;</button> <button type="button" className="btn btn-xs btn-danger img-circle" onClick={() => deleteTodo(todo.id)}>&#xff38;</button>
+        <button type="button" className="btn btn-xs btn-info img-circle" onClick={() => updateTodo(todo.id, 444)}>detail</button>	&nbsp;
+        <button type="button" className="btn btn-xs btn-success img-circle" onClick={() => checkTodo(todo.id)}>&#x2713;</button>	&nbsp;
+        <button type="button" className="btn btn-xs btn-danger img-circle" onClick={() => deleteTodo(todo.id)}>&#xff38;</button>
       </span>
     </li>
   )
