@@ -53,6 +53,15 @@ class App extends Component {
 
   checkTodo(id) {
     console.log(id);
+    let todos = this.state.todos;
+    for(let i in todos) {
+      if(todos[i].id === id) {
+        todos[i].status = todos[i].status === true ? false : true;
+        break;
+      }
+    }
+    this.setState({todos: todos});
+    // console.log(this.state.todos);
   }
 
   test(test) {

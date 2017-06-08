@@ -2,11 +2,16 @@ import React from 'react';
 
 // const TodoListItem = (props) => {
 const TodoListItem = ({todo, deleteTodo, checkTodo}) => {
-  // console.log(props);
+  // console.log(todo);
+
+  // const selected = this.todo.status ? '<list-group-item-success>' : '<list-group-item>';
+  // console.log(todo.status);
+  let classBootstrap = todo.status === false ? 'list-group-item' : 'list-group-item list-group-item-success';
 
   return (
     // <li className="list-group-item" style={{cursor: 'pointer'}} onClick={() => deleteTodo(todo.id)}>
-    <li className="list-group-item">
+    <li className={classBootstrap}>
+      {/* {todo.status} */}
       {todo.id}
       -
       {todo.title}
