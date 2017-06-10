@@ -17,7 +17,7 @@ class App extends Component {
       //   {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString(), status: false},
       //   {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString(), status: false},
       // ],
-      todos: JSON.parse(localStorage.getItem('state')).todos !== undefined ? JSON.parse(localStorage.getItem('state')).todos : [],
+      todos: (JSON.parse(localStorage.getItem('state')) === null) ? [] : JSON.parse(localStorage.getItem('state')).todos,
       selectTodo: false,
       todo: null
       // todo: {
@@ -34,6 +34,16 @@ class App extends Component {
     // this.state.todos.push({id:4});
 
   }
+
+  // componentWillMount() {
+  //   console.log(JSON.parse(localStorage.getItem('state')).todos.length);
+  //   // let todos = JSON.parse(localStorage.getItem('state')).todos
+  //   // this.setState({todos: todos}, () => {
+  //   //   console.log(this.state);
+  //   //   localStorage.setItem('state', JSON.stringify(this.state));
+  //   // });
+  //
+  // }
 
   // componentDidMount() {
   //   console.log(this.state);
