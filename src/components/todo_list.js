@@ -10,7 +10,7 @@ const TodoList = (props) => {
       <TodoListItem
         deleteTodo={props.deletetodo}
         checkTodo={props.checktodo}
-        updateTodo={props.updatetodo}
+        selectTodo={props.selecttodo}
         key={todo.id}
         todo={todo} />
     )

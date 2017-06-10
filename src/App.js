@@ -17,27 +17,39 @@ class App extends Component {
         {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString(), status: false},
         {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString(), status: false},
       ],
-      selectTodo: false
+      selectTodo: false,
+      todo: null
+      // todo: {
+      //   id: 4,
+      //   title: 111,
+      //   description: '555',
+      //   date: new Date().toLocaleTimeString(),
+      //   status: false
+      // }
     };
-    console.log(this.state);
+    // console.log(this.state);
     // this.state.todos.push({id:4});
 
   }
 
-  addTodo(val){
-    console.log('addtodo', val);
+  addTodo(val) {
+    // console.log('addtodo', val);
+
+    let todos = this.state.todos;
 
     const todo = {
       id: Math.floor((Math.random() * 100) + 1), //1-100
       title: val,
-      description: val + '555',
+      description: '',
       date: new Date().toLocaleTimeString(),
       status: false
     }
     // Update data
-    this.state.todos.push(todo);
+    // this.state.todos.push(todo);
+    todos.push(todo);
     // Update state
     this.setState({todos: this.state.todos});
+    console.log(this.state);
   }
 
   deleteTodo(id) {
@@ -49,13 +61,17 @@ class App extends Component {
   }
 
   updateTodo(id, val) {
-    const newValue = {
-      id: id,
-      title: val,
-      description: val + '555',
-      date: new Date().toLocaleTimeString(),
-      status: false
-    }
+    console.log(id);
+
+    // const newValue = {
+    //   id: id,
+    //   title: val,
+    //   description: val + '555',
+    //   date: new Date().toLocaleTimeString(),
+    //   status: false
+    // }
+
+    const newValue = val;
 
     let todos = this.state.todos;
     for(let todo in todos) {
@@ -65,6 +81,7 @@ class App extends Component {
       }
     }
     this.setState({todos: todos});
+    this.setState({selectTodo: false});
   }
 
   checkTodo(id) {
@@ -80,13 +97,24 @@ class App extends Component {
     // console.log(this.state.todos);
   }
 
+  selectTodo(id) {
+    // console.log(id)
+    let todos = this.state.todos
+    let newTodo = todos.find(item => item.id === id);
+    this.setState({
+      selectTodo: true,
+      todo: newTodo
+    });
+    console.log(this.state.todo);
+  }
+
   test(test) {
     console.log('test',test);
     console.log(this.state);
   }
 
   render() {
-    // console.log(this.props);
+    // console.log(this.state);
 
     return (
       <div className="App">
@@ -95,11 +123,11 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <br/>
-        <p className="App-intro">
+        <h1 className="">
           {/* To get started, edit <code>src/App.js</code> and save to reload. */}
           To do list - Web Application
-        </p>
-
+        </h1>
+        <br/>
         {/* <button onClick={e => this.test(e)}>Test</button> */}
         <div className="col-md-12">
           <TodoInput addtodo={this.addTodo.bind(this)} />
@@ -108,16 +136,17 @@ class App extends Component {
             todos={this.state.todos}
             deletetodo={this.deleteTodo.bind(this)}
             checktodo={this.checkTodo.bind(this)}
-            updatetodo={this.updateTodo.bind(this)}
-
+            selecttodo={this.selectTodo.bind(this)}
           />
         </div>
-        <div className="col-md-12">
-          <TodoDetail />
-
-        </div>
-
-
+        {this.state.selectTodo &&
+          <div className="col-md-6 col-md-offset-3">
+            <TodoDetail
+              todo={this.state.todo}
+              updatetodo={this.updateTodo.bind(this)}
+            />
+          </div>
+        }
 
       </div>
     );

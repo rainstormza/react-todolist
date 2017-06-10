@@ -14,12 +14,24 @@ class TodoInput extends Component {
 
   render() {
     return (
-      <div className="">
-        <form onSubmit={this.handleSubmit}>
-          Task : <input
+      <div className="col-md-6 col-md-offset-3">
+        <form className="form-horizontal" onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label className="col-md-2 control-label">Task  </label>
+            <div className="col-md-7">
+              <input type="text" name="task"
+                className="form-control"
+                value={this.state.input}
+                onChange={this.handleChange}
+              />
+            </div>
+            <input type="submit" value="add" className="btn btn-default" />
+
+          </div>
+          {/* <h3 style={{display:'inline'}}>Task : </h3> <input
+            className="form-control"
             value={this.state.input}
-            onChange={this.handleChange} />
-          <input type="submit" value="add" />
+            onChange={this.handleChange} />	&nbsp; */}
         </form>
       </div>
     );
