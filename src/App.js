@@ -12,11 +12,12 @@ class App extends Component {
     super(props);
 
     this.state = {
-      todos: [
-        {id: 1, title: '111', description: '111', date: new Date().toLocaleTimeString(), status: false},
-        {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString(), status: false},
-        {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString(), status: false},
-      ],
+      // todos: [
+      //   {id: 1, title: '111', description: '111', date: new Date().toLocaleTimeString(), status: false},
+      //   {id: 2, title: '222', description: '222', date: new Date().toLocaleTimeString(), status: false},
+      //   {id: 3, title: '333', description: '333', date: new Date().toLocaleTimeString(), status: false},
+      // ],
+      todos: JSON.parse(localStorage.getItem('state')).todos !== undefined ? JSON.parse(localStorage.getItem('state')).todos : [],
       selectTodo: false,
       todo: null
       // todo: {
@@ -27,6 +28,8 @@ class App extends Component {
       //   status: false
       // }
     };
+
+    localStorage.setItem('state', JSON.stringify(this.state));
     // console.log(this.state);
     // this.state.todos.push({id:4});
 
@@ -43,7 +46,8 @@ class App extends Component {
   addTodo(val) {
     // console.log('addtodo', val);
 
-    let todos = this.state.todos;
+    // let todos = this.state.todos;
+    let todos = JSON.parse(localStorage.getItem('state')).todos
 
     const todo = {
       id: Math.floor((Math.random() * 100) + 1), //1-100
@@ -56,14 +60,20 @@ class App extends Component {
     // this.state.todos.push(todo);
     todos.push(todo);
     // Update state
-    this.setState({todos: todos}, () => console.log(this.state));
+    this.setState({todos: todos}, () => {
+      console.log(this.state);
+      localStorage.setItem('state', JSON.stringify(this.state));
+    });
 
   }
 
   deleteTodo(id) {
     // console.log(id);
     let todos = this.state.todos.filter(todo => todo.id !== id);
-    this.setState({todos: todos}, () => console.log(this.state));
+    this.setState({todos: todos}, () => {
+      console.log(this.state);
+      localStorage.setItem('state', JSON.stringify(this.state));
+    });
   }
 
   updateTodo(id, val) {
@@ -86,10 +96,14 @@ class App extends Component {
         break;
       }
     }
-    this.setState({todos: todos});
-    this.setState({selectTodo: false});
-    this.setState({todo: ''});
-    console.log(this.state);
+    this.setState({
+      todos: todos,
+      selectTodo: false,
+      todo: ''
+    }, () => {
+      console.log(this.state);
+      localStorage.setItem('state', JSON.stringify(this.state));
+    });
   }
 
   checkTodo(id) {
@@ -101,7 +115,10 @@ class App extends Component {
         break;
       }
     }
-    this.setState({todos: todos}, () => console.log(this.state));
+    this.setState({todos: todos}, () => {
+      console.log(this.state);
+      localStorage.setItem('state', JSON.stringify(this.state));
+    });
   }
 
   selectTodo(id) {
@@ -111,11 +128,15 @@ class App extends Component {
     this.setState({
       selectTodo: true,
       todo: newTodo
-    }, () => console.log(this.state.todo));
+    }, () => {
+      console.log(this.state);
+      localStorage.setItem('state', JSON.stringify(this.state));
+    });
   }
 
   test() {
     console.log(this.state);
+    console.log(JSON.parse(localStorage.getItem('state')).todos);
   }
 
   render() {
@@ -133,7 +154,7 @@ class App extends Component {
           To do list - Web Application
         </h1>
         <br/>
-        <button onClick={this.test.bind(this)}>Test State</button>
+        {/* <button onClick={this.test.bind(this)}>Test State</button> */}
         {/* <button onClick={e => this.test(e)}>Test</button> */}
         <div className="col-md-12">
           <TodoInput addtodo={this.addTodo.bind(this)} />

@@ -39,7 +39,7 @@ class TodoInput extends Component {
 
   handleSubmit(event) {
     if(this.state.input !== '') {
-      console.log(this.state.input);
+      // console.log(this.state.input);
       this.props.addtodo(this.state.input);
       this.setState({input: ''});
     }
