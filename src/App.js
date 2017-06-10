@@ -32,6 +32,14 @@ class App extends Component {
 
   }
 
+  // componentDidMount() {
+  //   console.log(this.state);
+  // }
+  //
+  // componentWillUpdate() {
+  //   console.log(this.state);
+  // }
+
   addTodo(val) {
     // console.log('addtodo', val);
 
@@ -48,16 +56,14 @@ class App extends Component {
     // this.state.todos.push(todo);
     todos.push(todo);
     // Update state
-    this.setState({todos: this.state.todos});
-    console.log(this.state);
+    this.setState({todos: todos}, () => console.log(this.state));
+
   }
 
   deleteTodo(id) {
     // console.log(id);
     let todos = this.state.todos.filter(todo => todo.id !== id);
-    this.setState({todos: todos});
-    // console.log(this.state.todos);
-
+    this.setState({todos: todos}, () => console.log(this.state));
   }
 
   updateTodo(id, val) {
@@ -82,6 +88,8 @@ class App extends Component {
     }
     this.setState({todos: todos});
     this.setState({selectTodo: false});
+    this.setState({todo: ''});
+    console.log(this.state);
   }
 
   checkTodo(id) {
@@ -93,8 +101,7 @@ class App extends Component {
         break;
       }
     }
-    this.setState({todos: todos});
-    // console.log(this.state.todos);
+    this.setState({todos: todos}, () => console.log(this.state));
   }
 
   selectTodo(id) {
@@ -104,12 +111,10 @@ class App extends Component {
     this.setState({
       selectTodo: true,
       todo: newTodo
-    });
-    console.log(this.state.todo);
+    }, () => console.log(this.state.todo));
   }
 
-  test(test) {
-    console.log('test',test);
+  test() {
     console.log(this.state);
   }
 
@@ -128,6 +133,7 @@ class App extends Component {
           To do list - Web Application
         </h1>
         <br/>
+        <button onClick={this.test.bind(this)}>Test State</button>
         {/* <button onClick={e => this.test(e)}>Test</button> */}
         <div className="col-md-12">
           <TodoInput addtodo={this.addTodo.bind(this)} />

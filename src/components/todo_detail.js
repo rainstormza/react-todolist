@@ -4,7 +4,6 @@ class TodoDetail extends Component {
 
   constructor(props) {
     super(props);
-    // console.log(this.props);
 
     this.state = {
       id: props.todo.id,
@@ -20,13 +19,15 @@ class TodoDetail extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+
     this.setState({
-      id: this.props.todo.id,
-      date: this.props.todo.date,
-      title: this.props.todo.title,
-      description: this.props.todo.description,
-      status: this.props.todo.status
+      id: nextProps.todo.id,
+      date: nextProps.todo.date,
+      title: nextProps.todo.title,
+      description: nextProps.todo.description,
+      status: nextProps.todo.status
     })
   }
 
